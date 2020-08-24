@@ -1,0 +1,52 @@
+@import "./variables";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*,
+button,
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+  font-family: "Quicksand", sans-serif;
+  transition: 250ms;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 1.15rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: $radius;
+}
+
+button {
+  color: #fff;
+  background: $primary;
+  cursor: pointer;
+  box-shadow: 0 1px 10px rgba($primary, 0.2);
+}
+
+input,
+select,
+textarea {
+  border: 1px solid darken($light, 10);
+  &::placeholder {
+    color: darken($light, 10);
+  }
+  &:hover {
+    border-color: lighten($primary, 20);
+    box-shadow: 0 1px 10px rgba($primary, 0.2);
+  }
+  &:active,
+  &:focus {
+    border-color: $primary;
+  }
+}
