@@ -7,6 +7,7 @@ import { Line } from "react-chartjs-2";
 
 export default function Home({ data, countries, daily }) {
   const [searchData, setSearchData] = useState(null);
+  const [searchTotal, setSearchTotal] = useState(null);
   const countryRef = useRef(null);
 
   const handleSubmit = async (event) => {
@@ -16,7 +17,12 @@ export default function Home({ data, countries, daily }) {
       `https://covid19.mathdro.id/api/countries/${countryRef.current.value}/confirmed`
     );
 
+    const { data: total } = await axios.get(
+      `https://covid19.mathdro.id/api/countries/${countryRef.current.value}`
+    );
+
     setSearchData(search);
+    setSearchTotal(total);
   };
   return (
     <>
@@ -65,13 +71,26 @@ export default function Home({ data, countries, daily }) {
                 <button type="submit">Pesquisar</button>
               </div>
             </form>
+            {searchTotal && (
+              <div className={style.totalinfo}>
+                <p>
+                  Confirmados <h2>{searchTotal.confirmed.value}</h2>
+                </p>
+                <p>
+                  Recuperados <h2>{searchTotal.recovered.value}</h2>
+                </p>
+                <p>
+                  Mortes <h2>{searchTotal.deaths.value}</h2>
+                </p>
+              </div>
+            )}
             <table cellPadding={0} cellSpacing={0}>
               <thead>
                 <tr>
                   <td>Estado</td>
                   <td>Confirmados</td>
-                  <td>Mortes</td>
                   <td>Recuperados</td>
+                  <td>Mortes</td>
                   <td>Mortal./Confir.</td>
                   <td>Atualização</td>
                 </tr>

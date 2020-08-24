@@ -36,11 +36,16 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid $light;
         padding: 1.5rem;
         select {
           min-width: 10rem;
           margin-right: 1rem;
+        }
+        @media (max-width: 1000px) {
+          flex-direction: column;
+          > div {
+            margin-top: 1rem;
+          }
         }
       }
       table {
@@ -61,6 +66,12 @@
     .chart {
       padding: 1rem;
       width: 50%;
+      @media (max-width: 1000px) {
+        width: 100%;
+      }
+    }
+    @media (max-width: 1000px) {
+      flex-direction: column;
     }
   }
 }
@@ -71,6 +82,9 @@
   flex-direction: row;
   justify-content: stretch;
   gap: 2rem;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 }
 
 .info {
@@ -88,4 +102,12 @@
     cursor: pointer;
     opacity: 0.75;
   }
+}
+
+.totalinfo {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid $light;
 }
